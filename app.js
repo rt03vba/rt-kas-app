@@ -28,6 +28,10 @@ loadIuran()
 
 initChart()
 
+}else{
+
+alert("Password salah")
+
 }
 
 }
@@ -59,10 +63,14 @@ async function loadDashboard(){
 const {data:warga}=await supabase.from("warga").select("")
 const {data:kas}=await supabase.from("kas").select("")
 
-document.getElementById("totalWarga").innerText=warga.length
+let totalWarga=warga ? warga.length : 0
+
+document.getElementById("totalWarga").innerText=totalWarga
 
 let masuk=0
 let keluar=0
+
+if(kas){
 
 kas.forEach(k=>{
 
@@ -70,6 +78,8 @@ if(k.jenis==="masuk"){masuk+=k.jumlah}
 if(k.jenis==="keluar"){keluar+=k.jumlah}
 
 })
+
+}
 
 document.getElementById("kasMasuk").innerText=masuk
 document.getElementById("kasKeluar").innerText=keluar
@@ -84,13 +94,13 @@ let list=document.getElementById("wargaList")
 
 list.innerHTML=""
 
+if(!data) return
+
 data.forEach(w=>{
 
 let nik=""
 
 if(role==="admin"){nik="NIK:"+w.nik+"<br>"}
-
-let status="<span class='red'>Belum Bayar</span>"
 
 let div=document.createElement("div")
 
@@ -101,8 +111,7 @@ div.innerHTML=
 "<b>"+w.nama+"</b><br>"+
 nik+
 "Alamat:"+w.alamat+"<br>"+
-"Status Rumah:"+w.status+"<br>"+
-status
+"Status:"+w.status
 
 list.appendChild(div)
 
@@ -130,12 +139,13 @@ let drop=document.getElementById("dropdownWarga")
 
 drop.innerHTML=""
 
+if(!data) return
+
 data.forEach(w=>{
 
 let opt=document.createElement("option")
 
 opt.value=w.nama
-
 opt.text=w.nama
 
 drop.appendChild(opt)
@@ -162,6 +172,8 @@ const {data}=await supabase.from("iuran").select("*")
 let list=document.getElementById("iuranList")
 
 list.innerHTML=""
+
+if(!data) return
 
 data.forEach(i=>{
 
@@ -203,6 +215,8 @@ let list=document.getElementById("kasList")
 
 list.innerHTML=""
 
+if(!data) return
+
 data.forEach(k=>{
 
 let div=document.createElement("div")
@@ -217,17 +231,19 @@ list.appendChild(div)
 
 }
 
+let chart
+
 function initChart(){
 
 const ctx=document.getElementById("chartKas")
 
-new Chart(ctx,{
+chart=new Chart(ctx,{
 type:"bar",
 data:{
 labels:["Kas Masuk","Kas Keluar"],
 datasets:[{
 label:"Kas RT",
-data:[500000,200000]
+data:[0,0]
 }]
 }
 })
