@@ -75,9 +75,10 @@ padding:10px;
 
 </style></head><body><div id="loginPage"><div class="topbar">Login RT Digital</div><div class="card"><input id="password" type="password" placeholder="Password"><button onclick="login()">Login</button>
 
-</div></div><div id="appPage" style="display:none"><div class="topbar">RT DIGITAL</div><div class="logo"><input type="file" onchange="uploadLogo(event)"><img id="logoRT" width="80"></div><div id="dashboard" class="page"><div class="card"><h3>Total Warga : <span id="totalWarga"></span></h3>
-<h3>Kas Masuk : Rp <span id="kasMasuk"></span></h3>
-<h3>Kas Keluar : Rp <span id="kasKeluar"></span></h3></div><div class="card"><canvas id="chartKas"></canvas>
+</div></div><div id="appPage" style="display:none"><div class="topbar">RT DIGITAL</div><div class="logo"><input type="file" onchange="uploadLogo(event)">
+<img id="logoRT" width="80"></div><div id="dashboard" class="page"><div class="card"><h3>Total Warga : <span id="totalWarga">0</span></h3>
+<h3>Kas Masuk : Rp <span id="kasMasuk">0</span></h3>
+<h3>Kas Keluar : Rp <span id="kasKeluar">0</span></h3></div><div class="card"><canvas id="chartKas"></canvas>
 
 </div></div><div id="wargaPage" class="page"><div class="card"><input id="searchWarga" placeholder="Cari warga" onkeyup="searchWarga()"><div id="wargaList"></div></div></div><div id="iuranPage" class="page"><div class="card"><select id="dropdownWarga"></select>
 
@@ -87,7 +88,9 @@ padding:10px;
 <option value="keluar">Kas Keluar</option></select><input id="kasKet" placeholder="Keterangan"><button onclick="tambahKas()">Tambah</button>
 
 </div><div class="card"><div id="kasList"></div></div></div><div id="laporanPage" class="page"><div class="card"><button onclick="exportExcel()">Export Excel</button>
+
 <br><br>
+
 <button onclick="exportPDF()">Export PDF</button>
 
 </div></div><div class="bottomnav"><button onclick="showPage('dashboard')">Dashboard</button>
