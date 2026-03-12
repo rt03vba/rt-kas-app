@@ -17,9 +17,47 @@
 
 <h1>Dashboard Kas RT</h1>
 
-<div class="card">
+<div class="menu">
 
+<button onclick="showPage('dashboard')">Dashboard</button>
+
+<button onclick="showPage('warga')">Data Warga</button>
+
+<button onclick="showPage('kas')">Kas RT</button>
+
+<button onclick="showPage('laporan')">Laporan</button>
+
+</div>
+
+<div id="dashboard" class="page">
+
+<div class="card">
 <canvas id="kasChart"></canvas>
+</div>
+
+</div>
+
+<div id="warga" class="page" style="display:none">
+
+<h2>Data Warga</h2>
+
+<p>Daftar warga akan tampil di sini</p>
+
+</div>
+
+<div id="kas" class="page" style="display:none">
+
+<h2>Kas RT</h2>
+
+<p>Data kas masuk dan keluar</p>
+
+</div>
+
+<div id="laporan" class="page" style="display:none">
+
+<h2>Laporan</h2>
+
+<p>Export PDF dan Excel</p>
 
 </div>
 
